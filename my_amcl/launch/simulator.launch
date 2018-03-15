@@ -1,0 +1,19 @@
+<launch>
+
+  <!-- This launch file starts everything necessary to test the particle filter in simulateion EXCEPT 
+  the particle filter itself. -->
+
+  <!-- Launch file command-line arguments -->
+  <arg name="world_file"  default="$(find particle_filter)/worlds/house.world"/>
+  <arg name="map_file" default="$(find particle_filter)/maps/house_map.yaml"/>
+
+  <include file="$(find turtlebot_gazebo)/launch/turtlebot_world.launch">
+    <arg name="world_file" value="$(arg world_file)"/>
+  </include>
+
+
+  <node name="map_server" pkg="map_server" type="map_server" args="$(arg map_file)" />
+  <node name="mcl_tf" pkg="particle_filter" type="mcl_tf.py"  />
+  <node name="rviz" pkg="rviz" type="rviz" args="-d $(find particle_filter)/rviz/mc_localalization.rviz"/>
+
+</launch>
