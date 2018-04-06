@@ -2,9 +2,6 @@
 """ 
 Map classes that can generate and read OccupancyGrid messages.
 
-
-Author: Nathan Sprague
-Version: 3/22/13
 """
 
 import rospy
